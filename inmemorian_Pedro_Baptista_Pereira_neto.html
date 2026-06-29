@@ -1,212 +1,695 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#062452" />
-  <meta name="description" content="Memorial de Pedro Baptista Pereira Neto" />
-  <title>In Memorian | Pedro Baptista Pereira Neto</title>
-  <link rel="preload" href="assets/logo-memorial-online.png" as="image" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Memorial | Pedro Baptista Pereira Neto</title>
+
+  <style>
+    :root {
+      --marrom: #6f4e37;
+      --marrom-escuro: #3f2b1d;
+      --dourado: #c49a5a;
+      --bege-claro: #fffaf2;
+      --texto: #3a2b22;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--texto);
+      background:
+        linear-gradient(rgba(47, 31, 22, 0.65), rgba(47, 31, 22, 0.78)),
+        radial-gradient(circle at 20% 15%, rgba(196,154,90,0.35), transparent 28%),
+        radial-gradient(circle at 82% 8%, rgba(255,250,242,0.18), transparent 24%),
+        linear-gradient(135deg, #3f2b1d, #6f4e37, #2b1b12);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 18% 22%, rgba(255,255,255,0.14), transparent 27%),
+        radial-gradient(circle at 78% 12%, rgba(196,154,90,0.18), transparent 25%),
+        radial-gradient(circle at 50% 92%, rgba(255,255,255,0.10), transparent 30%);
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 70px;
+    }
+
+    header {
+      min-height: 78vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px 0;
+    }
+
+    .hero-card {
+      width: min(820px, 100%);
+      padding: 42px 28px;
+      border-radius: 32px;
+      background: rgba(255, 250, 242, 0.92);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.32);
+      border: 1px solid rgba(255,255,255,0.45);
+      animation: subir 900ms ease both;
+    }
+
+    @keyframes subir {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .halo {
+      width: 132px;
+      height: 132px;
+      margin: 0 auto 22px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, #fffaf2 50%, transparent 51%),
+        conic-gradient(from 0deg, #c49a5a, #fff3bf, #c49a5a, #8b5e3c, #c49a5a);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 10px 28px rgba(111,78,55,0.22);
+    }
+
+    .avatar {
+      width: 108px;
+      height: 108px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #8b5e3c, #3f2b1d);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 44px;
+      font-weight: 700;
+      letter-spacing: -2px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 4rem);
+      color: var(--marrom-escuro);
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+
+    .datas {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: var(--marrom);
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+
+    .frase {
+      max-width: 680px;
+      margin: 0 auto 26px;
+      color: #5f4b3d;
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .btn {
+      border: none;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.16);
+    }
+
+    .btn-primary {
+      background: var(--marrom);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--marrom-escuro);
+    }
+
+    .btn-secondary {
+      background: rgba(111, 78, 55, 0.12);
+      color: var(--marrom-escuro);
+    }
+
+    main {
+      display: grid;
+      gap: 22px;
+    }
+
+    section {
+      background: rgba(255, 250, 242, 0.92);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 16px 50px rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.45);
+    }
+
+    section h2 {
+      color: var(--marrom-escuro);
+      margin-bottom: 16px;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+    }
+
+    section p {
+      line-height: 1.75;
+      color: #4f3d32;
+      font-size: 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .info-card {
+      background: rgba(255,255,255,0.72);
+      border-radius: 22px;
+      padding: 20px;
+      border: 1px solid rgba(111,78,55,0.10);
+    }
+
+    .info-card strong {
+      display: block;
+      color: var(--marrom);
+      margin-bottom: 8px;
+      font-size: 0.92rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 16px;
+      background: rgba(255,255,255,0.65);
+      border-radius: 20px;
+      border-left: 5px solid var(--dourado);
+    }
+
+    .timeline-item .ano {
+      font-weight: 800;
+      color: var(--marrom);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .foto-placeholder {
+      min-height: 180px;
+      border-radius: 22px;
+      background:
+        linear-gradient(135deg, rgba(111,78,55,0.15), rgba(196,154,90,0.28)),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.25) 0 10px, transparent 10px 20px);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: #6f4e37;
+      font-weight: 700;
+      padding: 18px;
+    }
+
+    .mensagem-final {
+      text-align: center;
+      font-size: 1.08rem;
+      color: #4f3d32;
+    }
+
+    .assinatura {
+      margin-top: 18px;
+      font-weight: 700;
+      color: var(--marrom);
+    }
+
+    footer {
+      text-align: center;
+      color: rgba(255,255,255,0.86);
+      padding: 28px 0 0;
+      font-size: 0.92rem;
+    }
+
+    .box-musica {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.68);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      padding: 20px;
+    }
+
+    .card-musica {
+      width: min(430px, 100%);
+      background: #fffaf2;
+      border-radius: 26px;
+      padding: 28px;
+      text-align: center;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.38);
+      border: 1px solid rgba(255,255,255,0.55);
+      animation: subir 700ms ease both;
+    }
+
+    .card-musica h2 {
+      color: var(--marrom-escuro);
+      margin-bottom: 10px;
+      font-size: 1.45rem;
+    }
+
+    .card-musica p {
+      color: #6b5b4b;
+      line-height: 1.55;
+      margin-bottom: 18px;
+    }
+
+    .botoes-musica {
+      display: grid;
+      gap: 10px;
+    }
+
+    .status-musica {
+      display: block;
+      min-height: 20px;
+      margin-top: 14px;
+      color: #9b1c1c;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .player-flutuante {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 9999;
+      display: none;
+      gap: 8px;
+      align-items: center;
+      background: rgba(255,250,242,0.94);
+      border: 1px solid rgba(255,255,255,0.5);
+      box-shadow: 0 14px 36px rgba(0,0,0,0.25);
+      border-radius: 999px;
+      padding: 8px;
+      backdrop-filter: blur(8px);
+    }
+
+    .player-flutuante button {
+      border: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      background: var(--marrom);
+      color: white;
+      font-size: 18px;
+    }
+
+    .player-flutuante span {
+      padding: 0 10px 0 4px;
+      color: var(--marrom-escuro);
+      font-weight: 700;
+      font-size: 0.86rem;
+      white-space: nowrap;
+    }
+
+    .cuia-chuva {
+      position: fixed;
+      top: -80px;
+      z-index: 2;
+      pointer-events: none;
+      user-select: none;
+      animation-name: cairCuia;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      opacity: 0.72;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.22));
+    }
+
+    @keyframes cairCuia {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+      }
+
+      100% {
+        transform: translateY(112vh) rotate(360deg);
+      }
+    }
+
+    @media (max-width: 860px) {
+      body {
+        background-attachment: scroll;
+      }
+
+      .page {
+        width: min(100% - 22px, 1120px);
+        padding-top: 14px;
+      }
+
+      header {
+        min-height: auto;
+        padding: 26px 0 18px;
+      }
+
+      .hero-card,
+      section {
+        border-radius: 24px;
+        padding: 24px 18px;
+      }
+
+      .grid,
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .player-flutuante {
+        left: 12px;
+        right: 12px;
+        justify-content: center;
+      }
+
+      .player-flutuante span {
+        white-space: normal;
+      }
+    }
+  </style>
 </head>
-<body class="memorial-page">
-  <header class="memorial-topbar">
-    <a class="mini-brand" href="inmemorian_Pedro_Baptista_Pereira_neto.html" aria-label="Memorial Online">
-      <img src="assets/logo-memorial-online.png" alt="Memorial Online" />
-    </a>
-    <button class="logout-button" id="logoutButton" type="button">Sair</button>
-  </header>
 
-  <main class="memorial-shell">
-    <section class="memorial-hero" aria-labelledby="personName">
-      <div class="hero-photo" aria-hidden="true">
-        <span>PB</span>
-      </div>
-      <p class="eyebrow">In Memorian</p>
-      <h1 id="personName">Pedro Baptista Pereira Neto</h1>
-      <p class="life-dates">08/02/1948 <span>—</span> 13/01/2020</p>
-      <p class="hero-text">
-        Uma homenagem criada para preservar lembranças, histórias, fotos e mensagens de carinho.
-        Este memorial é um exemplo de como a memória de alguém pode continuar acessível, viva e respeitada.
+<body>
+  <!--
+    Estrutura correta para a música:
+
+    seu-projeto/
+    ├── inmemorian_Pedro_Baptista_Pereira_neto.html
+    └── musicas/
+        └── musica-preferida.mp3
+
+    O arquivo precisa estar exatamente em:
+    musicas/musica-preferida.mp3
+
+    Não está usando pasta assets para música.
+  -->
+
+  <audio id="musicaMemorial" preload="auto" loop>
+    <source src="musicas/musica-preferida.mp3" type="audio/mpeg" />
+    Seu navegador não suporta áudio.
+  </audio>
+
+  <div id="boxMusica" class="box-musica">
+    <div class="card-musica">
+      <h2>Uma lembrança em forma de música</h2>
+      <p>
+        Clique abaixo para tocar a música preferida. No celular, o navegador exige esse toque.
       </p>
-      <div class="hero-actions">
-        <a class="primary-button hero-button" href="#mensagens">Deixar mensagem</a>
-        <a class="secondary-link" href="#historia">Ver história</a>
+
+      <div class="botoes-musica">
+        <button id="btnTocarMusica" class="btn btn-primary" type="button">
+          ▶ Tocar música preferida
+        </button>
+
+        <button id="btnEntrarSemMusica" class="btn btn-secondary" type="button">
+          Entrar sem música
+        </button>
       </div>
 
-      <div class="memory-audio" aria-label="Música preferida">
-        <audio id="favoriteMusic" preload="auto" loop playsinline controls>
-          <source src="assets/musica-preferida.mp3" type="audio/mpeg" />
-          <source src="assets/musica-preferida.m4a" type="audio/mp4" />
-          <source src="assets/musica-preferida.ogg" type="audio/ogg" />
-          Seu navegador não suporta áudio HTML5.
-        </audio>
-        <div>
-          <strong>Música preferida</strong>
-          <span id="musicStatus">Toque em “Tocar” ou use o player abaixo.</span>
-          <small class="music-help">Arquivo esperado: <b>assets/musica-preferida.mp3</b></small>
+      <span id="statusMusica" class="status-musica"></span>
+    </div>
+  </div>
+
+  <div id="playerFlutuante" class="player-flutuante">
+    <button id="btnControleMusica" type="button" aria-label="Pausar ou tocar música">⏸</button>
+    <span id="textoPlayer">Música tocando</span>
+  </div>
+
+  <div class="page">
+    <header>
+      <div class="hero-card">
+        <div class="halo">
+          <div class="avatar">PB</div>
         </div>
-        <div class="audio-actions">
-          <button class="audio-button" id="playMusicButton" type="button">▶ Tocar</button>
-          <button class="audio-button ghost" id="pauseMusicButton" type="button" disabled>Pausar</button>
+
+        <h1>Pedro Baptista Pereira Neto</h1>
+        <div class="datas">08/02/1948 — 13/01/2020</div>
+
+        <p class="frase">
+          Uma vida não termina quando parte. Ela continua nos gestos que ensinou,
+          nas histórias que deixou e no amor que permanece em silêncio dentro de cada lembrança.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#historia" class="btn btn-primary">Conhecer a história</a>
+          <a href="#memorias" class="btn btn-secondary">Ver memórias</a>
         </div>
       </div>
-    </section>
+    </header>
 
-    <section class="quick-info" aria-label="Informações principais">
-      <article>
-        <strong>Nome completo</strong>
-        <span>Pedro Baptista Pereira Neto</span>
-      </article>
-      <article>
-        <strong>Nascimento</strong>
-        <span>08 de fevereiro de 1948</span>
-      </article>
-      <article>
-        <strong>Falecimento</strong>
-        <span>13 de janeiro de 2020</span>
-      </article>
-      <article>
-        <strong>Idade</strong>
-        <span>71 anos</span>
-      </article>
-      <article>
-        <strong>Código do memorial</strong>
-        <span>memorial2026</span>
-      </article>
-    </section>
-
-    <section class="content-grid">
-      <article class="memorial-card wide" id="historia">
-        <div class="section-title">
-          <p class="eyebrow">História</p>
-          <h2>Uma vida guardada com respeito</h2>
-        </div>
+    <main>
+      <section id="historia">
+        <h2>História de vida</h2>
         <p>
-          Pedro Baptista Pereira Neto nasceu em 08 de fevereiro de 1948 e partiu em 13 de janeiro de 2020.
-          Esta página demonstra como um memorial digital pode reunir dados essenciais, lembranças afetivas,
-          fotos, mensagens da família e registros importantes da trajetória de uma pessoa.
+          Pedro Baptista Pereira Neto nasceu em 08 de fevereiro de 1948. Ao longo de sua caminhada,
+          construiu uma história marcada por família, trabalho, fé, amizade e presença. Este espaço
+          foi criado para guardar suas memórias de uma forma simples, bonita e acessível para todos
+          que desejam recordar sua trajetória.
         </p>
-        <p>
-          Aqui, a família poderia contar sua infância, sua caminhada profissional, seus valores, suas alegrias,
-          suas conquistas e os momentos que marcaram quem ele foi. A ideia é simples: transformar datas frias
-          em presença, história e memória.
+        <p style="margin-top: 14px;">
+          Aqui podem ser adicionadas histórias reais, fotografias, frases, vídeos, músicas preferidas,
+          depoimentos da família e lembranças especiais. O memorial online permite que cada visita seja
+          mais do que uma consulta: seja um reencontro.
         </p>
-      </article>
+      </section>
 
-      <article class="memorial-card quote-card">
-        <span class="quote-mark">“</span>
-        <p>
-          Quem é amado nunca desaparece por inteiro. Permanece nas histórias, nos gestos e no silêncio bonito da saudade.
-        </p>
-      </article>
-    </section>
+      <section>
+        <h2>Informações do memorial</h2>
 
-    <section class="memorial-card" aria-labelledby="timelineTitle">
-      <div class="section-title">
-        <p class="eyebrow">Linha do tempo</p>
-        <h2 id="timelineTitle">Marcos da memória</h2>
-      </div>
-      <div class="timeline">
-        <div class="timeline-item">
-          <time datetime="1948-02-08">1948</time>
-          <div>
+        <div class="grid">
+          <div class="info-card">
             <strong>Nascimento</strong>
-            <p>Pedro Baptista Pereira Neto nasceu em 08 de fevereiro de 1948.</p>
+            <p>08 de fevereiro de 1948</p>
+          </div>
+
+          <div class="info-card">
+            <strong>Falecimento</strong>
+            <p>13 de janeiro de 2020</p>
+          </div>
+
+          <div class="info-card">
+            <strong>Mensagem</strong>
+            <p>O amor permanece onde a memória acende luz.</p>
           </div>
         </div>
-        <div class="timeline-item">
-          <time>Família</time>
-          <div>
-            <strong>Laços e convivência</strong>
-            <p>Espaço para registrar familiares, amizades, histórias de casa e momentos importantes.</p>
+      </section>
+
+      <section>
+        <h2>Linha do tempo</h2>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="ano">1948</div>
+            <p>Nascimento de Pedro Baptista Pereira Neto, início de uma caminhada cheia de histórias.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="ano">Família</div>
+            <p>Momentos de convivência, ensinamentos e lembranças que seguem vivos entre familiares e amigos.</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="ano">2020</div>
+            <p>Sua partida física em 13 de janeiro de 2020, deixando saudade, respeito e amor.</p>
           </div>
         </div>
-        <div class="timeline-item">
-          <time>Legado</time>
-          <div>
-            <strong>Valores deixados</strong>
-            <p>Espaço para destacar ensinamentos, frases, hábitos e valores que continuam inspirando.</p>
-          </div>
+      </section>
+
+      <section id="memorias">
+        <h2>Galeria de memórias</h2>
+
+        <div class="gallery">
+          <div class="foto-placeholder">Adicionar foto da família</div>
+          <div class="foto-placeholder">Adicionar foto de momentos especiais</div>
+          <div class="foto-placeholder">Adicionar foto antiga ou homenagem</div>
         </div>
-        <div class="timeline-item">
-          <time datetime="2020-01-13">2020</time>
-          <div>
-            <strong>Despedida</strong>
-            <p>Pedro faleceu em 13 de janeiro de 2020, deixando lembranças que podem ser preservadas aqui.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="memorial-card" aria-labelledby="galleryTitle">
-      <div class="section-title row-title">
-        <div>
-          <p class="eyebrow">Galeria</p>
-          <h2 id="galleryTitle">Memórias em imagens</h2>
-        </div>
-        <span class="soft-badge">Exemplo</span>
-      </div>
-      <div class="gallery-grid">
-        <figure>
-          <div class="gallery-placeholder">Foto</div>
-          <figcaption>Retrato de família</figcaption>
-        </figure>
-        <figure>
-          <div class="gallery-placeholder">Foto</div>
-          <figcaption>Momentos especiais</figcaption>
-        </figure>
-        <figure>
-          <div class="gallery-placeholder">Foto</div>
-          <figcaption>Recordações antigas</figcaption>
-        </figure>
-      </div>
-    </section>
+      <section>
+        <h2>Mensagem da família</h2>
 
-    <section class="content-grid">
-      <article class="memorial-card">
-        <div class="section-title">
-          <p class="eyebrow">Vela virtual</p>
-          <h2>Acenda uma lembrança</h2>
-        </div>
-        <div class="candle-area">
-          <div class="candle" aria-hidden="true"><span></span></div>
-          <p><strong id="candleCount">0</strong> velas acesas neste dispositivo.</p>
-          <button class="secondary-button full" id="lightCandleButton" type="button">Acender vela</button>
-        </div>
-      </article>
+        <p class="mensagem-final">
+          “A saudade é grande, mas maior ainda é a gratidão por tudo que foi vivido.
+          Este memorial é uma forma de manter viva a sua presença em nossos corações.”
+        </p>
 
-      <article class="memorial-card">
-        <div class="section-title">
-          <p class="eyebrow">Dados públicos</p>
-          <h2>Identificação do memorial</h2>
-        </div>
-        <ul class="info-list">
-          <li><span>URL sugerida</span><strong>/inmemorian/Pedro-Baptista-Pereira-Neto</strong></li>
-          <li><span>QR Code</span><strong>Vinculado ao código memorial2026</strong></li>
-          <li><span>Privacidade</span><strong>Público por QR Code ou acesso autorizado</strong></li>
-        </ul>
-      </article>
-    </section>
+        <p class="assinatura">Com amor, família e amigos.</p>
+      </section>
+    </main>
 
-    <section class="memorial-card" id="mensagens" aria-labelledby="messagesTitle">
-      <div class="section-title">
-        <p class="eyebrow">Livro de visitas</p>
-        <h2 id="messagesTitle">Mensagens de carinho</h2>
-      </div>
+    <footer>
+      Memorial Online — Uma lembrança eterna acessível pelo QR Code.
+    </footer>
+  </div>
 
-      <form class="message-form" id="messageForm">
-        <label for="visitorName">Seu nome</label>
-        <input id="visitorName" type="text" maxlength="60" placeholder="Ex.: Maria" />
-        <label for="visitorMessage">Mensagem</label>
-        <textarea id="visitorMessage" maxlength="280" placeholder="Escreva uma lembrança, oração ou palavra de carinho..."></textarea>
-        <button class="primary-button" type="submit">Publicar mensagem</button>
-      </form>
+  <script>
+    const CAMINHO_MUSICA = "musicas/musica-preferida.mp3";
 
-      <div class="messages-list" id="messagesList" aria-live="polite"></div>
-    </section>
-  </main>
+    const musica = document.getElementById("musicaMemorial");
+    const boxMusica = document.getElementById("boxMusica");
+    const btnTocarMusica = document.getElementById("btnTocarMusica");
+    const btnEntrarSemMusica = document.getElementById("btnEntrarSemMusica");
+    const statusMusica = document.getElementById("statusMusica");
+    const playerFlutuante = document.getElementById("playerFlutuante");
+    const btnControleMusica = document.getElementById("btnControleMusica");
+    const textoPlayer = document.getElementById("textoPlayer");
 
-  <script src="memorial.js"></script>
+    musica.src = CAMINHO_MUSICA;
+    musica.volume = 0.45;
+
+    function esconderModalMusica() {
+      boxMusica.style.display = "none";
+    }
+
+    function mostrarPlayer() {
+      playerFlutuante.style.display = "flex";
+    }
+
+    function atualizarPlayer() {
+      if (musica.paused) {
+        btnControleMusica.textContent = "▶";
+        textoPlayer.textContent = "Música pausada";
+      } else {
+        btnControleMusica.textContent = "⏸";
+        textoPlayer.textContent = "Música tocando";
+      }
+    }
+
+    async function tocarMusica() {
+      try {
+        statusMusica.textContent = "";
+        await musica.play();
+
+        esconderModalMusica();
+        mostrarPlayer();
+        atualizarPlayer();
+      } catch (erro) {
+        console.error("Erro ao tocar música:", erro);
+
+        statusMusica.textContent =
+          "Não consegui tocar. Confira se o arquivo está exatamente em: musicas/musica-preferida.mp3";
+      }
+    }
+
+    btnTocarMusica.addEventListener("click", tocarMusica);
+
+    btnEntrarSemMusica.addEventListener("click", function () {
+      esconderModalMusica();
+      musica.pause();
+      playerFlutuante.style.display = "none";
+    });
+
+    btnControleMusica.addEventListener("click", async function () {
+      if (musica.paused) {
+        await tocarMusica();
+      } else {
+        musica.pause();
+        atualizarPlayer();
+      }
+    });
+
+    musica.addEventListener("play", atualizarPlayer);
+    musica.addEventListener("pause", atualizarPlayer);
+
+    musica.addEventListener("error", function () {
+      statusMusica.textContent =
+        "Arquivo de música não encontrado. Caminho esperado: musicas/musica-preferida.mp3";
+      console.error("Arquivo de música não encontrado:", CAMINHO_MUSICA);
+    });
+
+    (function chuvaDeCuias() {
+      const quantidade = window.innerWidth <= 600 ? 10 : 18;
+      const simbolo = "🧉";
+      const larguraTela = window.innerWidth;
+      const espacamento = larguraTela / quantidade;
+
+      for (let i = 0; i < quantidade; i++) {
+        const cuia = document.createElement("div");
+        cuia.className = "cuia-chuva";
+        cuia.innerHTML = simbolo;
+
+        const posicaoBase = i * espacamento;
+        const variacao = Math.random() * (espacamento * 0.55);
+
+        cuia.style.left = `${posicaoBase + variacao}px`;
+        cuia.style.fontSize = `${22 + Math.random() * 22}px`;
+        cuia.style.animationDuration = `${8 + Math.random() * 8}s`;
+        cuia.style.animationDelay = `${Math.random() * 8}s`;
+
+        document.body.appendChild(cuia);
+      }
+    })();
+  </script>
 </body>
 </html>
