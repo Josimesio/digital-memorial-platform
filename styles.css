@@ -1112,3 +1112,19 @@ textarea::placeholder {
   box-shadow: none;
 }
 
+
+/* Correção do player de música do memorial */
+.memory-audio audio {
+  width: 100%;
+  margin-top: .75rem;
+  order: 3;
+  grid-column: 1 / -1;
+}
+
+.music-help {
+  display: block;
+  margin-top: .35rem;
+  color: var(--muted, #6c7484);
+  font-size: .82rem;
+  line-height: 1.35;
+}
