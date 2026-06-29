@@ -4,15 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Memorial | Pedro Baptista Pereira Neto</title>
+  <title>Memoriam Online | Pedro Baptista Pereira Neto</title>
 
   <style>
-    :root {
-      --marrom: #6f4e37;
-      --marrom-escuro: #3f2b1d;
-      --dourado: #c49a5a;
-      --bege-claro: #fffaf2;
-      --texto: #3a2b22;
+     :root {
+      /* Paleta Memoriam Online */
+      --azul-profundo: #0b1f3a;
+      --azul-noite: #07182e;
+      --grafite: #2e3440;
+      --dourado: #c9a24a;
+      --dourado-suave: #d8b76a;
+      --off-white: #f8f5ee;
+      --branco-card: rgba(255, 255, 250, 0.94);
+      --cinza-suave: #6f7782;
+      --texto: #2e3440;
+      --texto-suave: #6f7782;
+      --sombra: rgba(11, 31, 58, 0.16);
+      --verde-suave: #2f6b58;
+      --vermelho-suave: #9b2f2f;
+
+      /* Aliases para preservar a estrutura original sem quebrar componentes */
+      --marrom: var(--azul-profundo);
+      --marrom-escuro: var(--azul-noite);
+      --dourado-claro: var(--dourado-suave);
+      --bege-claro: var(--off-white);
+      --bege-card: var(--branco-card);
     }
 
     * {
@@ -30,10 +46,10 @@
       font-family: Arial, Helvetica, sans-serif;
       color: var(--texto);
       background:
-        linear-gradient(rgba(47, 31, 22, 0.65), rgba(47, 31, 22, 0.78)),
-        radial-gradient(circle at 20% 15%, rgba(196,154,90,0.35), transparent 28%),
-        radial-gradient(circle at 82% 8%, rgba(255,250,242,0.18), transparent 24%),
-        linear-gradient(135deg, #3f2b1d, #6f4e37, #2b1b12);
+        radial-gradient(circle at 16% 10%, rgba(201,162,74,0.22), transparent 28%),
+        radial-gradient(circle at 86% 6%, rgba(11,31,58,0.11), transparent 26%),
+        radial-gradient(circle at 50% 100%, rgba(201,162,74,0.12), transparent 34%),
+        linear-gradient(180deg, var(--off-white), #fffdf8 46%, #eef2f6 100%);
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -46,9 +62,9 @@
       inset: 0;
       pointer-events: none;
       background:
-        radial-gradient(circle at 18% 22%, rgba(255,255,255,0.14), transparent 27%),
-        radial-gradient(circle at 78% 12%, rgba(196,154,90,0.18), transparent 25%),
-        radial-gradient(circle at 50% 92%, rgba(255,255,255,0.10), transparent 30%);
+        linear-gradient(120deg, transparent 0 20%, rgba(201,162,74,0.08) 20% 21%, transparent 21% 100%),
+        radial-gradient(circle at 22% 24%, rgba(255,255,255,0.55), transparent 28%),
+        radial-gradient(circle at 82% 16%, rgba(11,31,58,0.08), transparent 26%);
       z-index: 0;
     }
 
@@ -73,11 +89,72 @@
       width: min(820px, 100%);
       padding: 42px 28px;
       border-radius: 32px;
-      background: rgba(255, 250, 242, 0.92);
+      background: linear-gradient(180deg, rgba(255,255,250,0.96), rgba(248,245,238,0.93));
       backdrop-filter: blur(10px);
-      box-shadow: 0 24px 80px rgba(0,0,0,0.32);
-      border: 1px solid rgba(255,255,255,0.45);
+      box-shadow: 0 24px 80px rgba(11,31,58,0.16);
+      border: 1px solid rgba(201,162,74,0.22);
       animation: subir 900ms ease both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after,
+    section::after {
+      content: "";
+      position: absolute;
+      right: -90px;
+      top: -90px;
+      width: 190px;
+      height: 190px;
+      background: radial-gradient(circle, rgba(201,162,74,0.20), transparent 68%);
+      pointer-events: none;
+    }
+
+
+
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 0 auto 26px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,250,0.78);
+      border: 1px solid rgba(201,162,74,0.26);
+      box-shadow: 0 10px 28px rgba(11,31,58,0.08);
+    }
+
+    .brand-symbol {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 52px;
+    }
+
+    .brand-symbol svg {
+      width: 52px;
+      height: 52px;
+      display: block;
+    }
+
+    .brand-text {
+      display: grid;
+      text-align: left;
+      line-height: 1.15;
+    }
+
+    .brand-text strong {
+      color: var(--azul-profundo);
+      font-size: 1.08rem;
+      letter-spacing: 0.2px;
+    }
+
+    .brand-text span {
+      color: var(--cinza-suave);
+      font-size: 0.78rem;
+      margin-top: 3px;
     }
 
     @keyframes subir {
@@ -98,24 +175,25 @@
       margin: 0 auto 22px;
       border-radius: 50%;
       background:
-        radial-gradient(circle, #fffaf2 50%, transparent 51%),
-        conic-gradient(from 0deg, #c49a5a, #fff3bf, #c49a5a, #8b5e3c, #c49a5a);
+        radial-gradient(circle, var(--off-white) 50%, transparent 51%),
+        conic-gradient(from 0deg, var(--dourado-suave), #fff0bf, var(--dourado), var(--dourado-suave), var(--dourado));
       display: grid;
       place-items: center;
-      box-shadow: 0 10px 28px rgba(111,78,55,0.22);
+      box-shadow: 0 10px 28px rgba(201,162,74,0.24);
     }
 
     .avatar {
       width: 108px;
       height: 108px;
       border-radius: 50%;
-      background: linear-gradient(145deg, #8b5e3c, #3f2b1d);
+      background: linear-gradient(145deg, var(--grafite), var(--azul-noite));
       display: grid;
       place-items: center;
       color: white;
       font-size: 44px;
       font-weight: 700;
       letter-spacing: -2px;
+      border: 2px solid rgba(201,162,74,0.55);
     }
 
     h1 {
@@ -135,7 +213,7 @@
     .frase {
       max-width: 680px;
       margin: 0 auto 26px;
-      color: #5f4b3d;
+      color: #5f6670;
       line-height: 1.7;
       font-size: 1.05rem;
     }
@@ -156,16 +234,17 @@
       font-weight: 700;
       cursor: pointer;
       text-decoration: none;
-      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
+      min-height: 48px;
     }
 
     .btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.16);
+      box-shadow: 0 12px 24px rgba(11,31,58,0.14);
     }
 
     .btn-primary {
@@ -178,8 +257,13 @@
     }
 
     .btn-secondary {
-      background: rgba(111, 78, 55, 0.12);
+      background: rgba(11, 31, 58, 0.12);
       color: var(--marrom-escuro);
+      border: 1px solid rgba(11, 31, 58, 0.10);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(201, 162, 74, 0.55);
     }
 
     main {
@@ -188,11 +272,18 @@
     }
 
     section {
-      background: rgba(255, 250, 242, 0.92);
+      position: relative;
+      overflow: hidden;
+      background: var(--bege-card);
       border-radius: 28px;
       padding: 28px;
-      box-shadow: 0 16px 50px rgba(0,0,0,0.18);
-      border: 1px solid rgba(255,255,255,0.45);
+      box-shadow: 0 16px 50px rgba(11,31,58,0.12);
+      border: 1px solid rgba(201,162,74,0.18);
+    }
+
+    section > * {
+      position: relative;
+      z-index: 1;
     }
 
     section h2 {
@@ -203,8 +294,14 @@
 
     section p {
       line-height: 1.75;
-      color: #4f3d32;
+      color: #394150;
       font-size: 1rem;
+    }
+
+    .section-subtitle {
+      color: var(--texto-suave);
+      margin: -6px 0 18px;
+      max-width: 760px;
     }
 
     .grid {
@@ -213,11 +310,18 @@
       gap: 18px;
     }
 
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
     .info-card {
       background: rgba(255,255,255,0.72);
       border-radius: 22px;
       padding: 20px;
-      border: 1px solid rgba(111,78,55,0.10);
+      border: 1px solid rgba(11,31,58,0.10);
     }
 
     .info-card strong {
@@ -261,20 +365,21 @@
       min-height: 180px;
       border-radius: 22px;
       background:
-        linear-gradient(135deg, rgba(111,78,55,0.15), rgba(196,154,90,0.28)),
-        repeating-linear-gradient(45deg, rgba(255,255,255,0.25) 0 10px, transparent 10px 20px);
+        linear-gradient(135deg, rgba(11,31,58,0.08), rgba(201,162,74,0.22)),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.40) 0 10px, transparent 10px 20px);
       display: grid;
       place-items: center;
       text-align: center;
-      color: #6f4e37;
+      color: var(--azul-profundo);
       font-weight: 700;
       padding: 18px;
+      border: 1px solid rgba(201,162,74,0.20);
     }
 
     .mensagem-final {
       text-align: center;
       font-size: 1.08rem;
-      color: #4f3d32;
+      color: #394150;
     }
 
     .assinatura {
@@ -283,9 +388,234 @@
       color: var(--marrom);
     }
 
+    /* Vela online */
+    .vela-card {
+      min-height: 100%;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.78), rgba(255,255,255,0.54)),
+        radial-gradient(circle at 50% 18%, rgba(242,215,155,0.45), transparent 34%);
+      border-radius: 26px;
+      border: 1px solid rgba(201,162,74,0.28);
+      padding: 24px;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .vela-visual {
+      width: 130px;
+      height: 210px;
+      position: relative;
+      display: grid;
+      place-items: end center;
+      margin: 8px auto 20px;
+      filter: drop-shadow(0 24px 28px rgba(11,31,58,0.22));
+    }
+
+    .chama {
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      width: 42px;
+      height: 62px;
+      transform: translateX(-50%);
+      border-radius: 55% 45% 55% 45%;
+      background:
+        radial-gradient(circle at 48% 64%, #fff7c7 0 18%, transparent 19%),
+        radial-gradient(circle at 50% 48%, #ffd25f 0 34%, transparent 35%),
+        linear-gradient(180deg, #ffb02e, #df5b22 72%);
+      transform-origin: 50% 88%;
+      animation: chamaViva 1.35s ease-in-out infinite alternate;
+      opacity: 0;
+      transition: opacity 350ms ease;
+      box-shadow: 0 0 28px rgba(255,178,55,0.65);
+    }
+
+    .vela-acesa .chama {
+      opacity: 1;
+    }
+
+    @keyframes chamaViva {
+      0% { transform: translateX(-50%) rotate(-4deg) scale(0.96); }
+      100% { transform: translateX(-50%) rotate(5deg) scale(1.04); }
+    }
+
+    .corpo-vela {
+      width: 92px;
+      height: 142px;
+      border-radius: 22px 22px 16px 16px;
+      background:
+        linear-gradient(90deg, #f5f2ea, #f8f5ee 38%, #e8e1d3 100%);
+      border: 1px solid rgba(11,31,58,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .corpo-vela::before {
+      content: "";
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 24px;
+      background: #07182e;
+      border-radius: 999px;
+    }
+
+    .corpo-vela::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 0 34%, rgba(255,255,255,0.55) 35% 46%, transparent 47%);
+    }
+
+    .base-vela {
+      position: absolute;
+      bottom: 0;
+      width: 124px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(11,31,58,0.16);
+    }
+
+    .contador-velas {
+      color: var(--marrom-escuro);
+      font-weight: 800;
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+
+    .texto-vela {
+      color: var(--texto-suave);
+      margin-bottom: 16px;
+    }
+
+    .vela-status {
+      margin-top: 12px;
+      min-height: 22px;
+      color: var(--verde-suave);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    /* Mensagens para família */
+    .form-mensagem {
+      background: rgba(255,255,255,0.72);
+      border-radius: 24px;
+      padding: 20px;
+      border: 1px solid rgba(11,31,58,0.10);
+    }
+
+    .campo {
+      margin-bottom: 14px;
+    }
+
+    .campo label {
+      display: block;
+      color: var(--marrom-escuro);
+      font-weight: 800;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    .campo input,
+    .campo textarea {
+      width: 100%;
+      border: 1px solid rgba(11,31,58,0.20);
+      background: #f8f5ee;
+      border-radius: 16px;
+      padding: 14px 15px;
+      color: var(--texto);
+      font-size: 1rem;
+      outline: none;
+      transition: box-shadow 180ms ease, border-color 180ms ease;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .campo textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .campo input:focus,
+    .campo textarea:focus {
+      border-color: var(--dourado);
+      box-shadow: 0 0 0 4px rgba(201,162,74,0.16);
+    }
+
+    .contador-caracteres {
+      display: block;
+      text-align: right;
+      color: var(--texto-suave);
+      font-size: 0.82rem;
+      margin-top: 6px;
+    }
+
+    .status-form {
+      min-height: 22px;
+      margin-top: 12px;
+      color: var(--verde-suave);
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .status-form.erro {
+      color: var(--vermelho-suave);
+    }
+
+    .mural-mensagens {
+      display: grid;
+      gap: 14px;
+      max-height: 560px;
+      overflow: auto;
+      padding-right: 4px;
+    }
+
+    .mensagem-card {
+      background: rgba(255,255,255,0.72);
+      border-radius: 22px;
+      padding: 18px;
+      border-left: 5px solid var(--dourado);
+      box-shadow: 0 10px 24px rgba(11,31,58,0.08);
+    }
+
+    .mensagem-card .topo {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 9px;
+    }
+
+    .mensagem-card strong {
+      color: var(--marrom-escuro);
+      font-size: 1rem;
+    }
+
+    .mensagem-card small {
+      color: var(--texto-suave);
+      white-space: nowrap;
+      font-size: 0.78rem;
+    }
+
+    .mensagem-card p {
+      color: #394150;
+      line-height: 1.65;
+    }
+
+    .sem-mensagens {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.6);
+      color: var(--texto-suave);
+      text-align: center;
+    }
+
     footer {
       text-align: center;
-      color: rgba(255,255,255,0.86);
+      color: var(--cinza-suave);
       padding: 28px 0 0;
       font-size: 0.92rem;
     }
@@ -293,7 +623,7 @@
     .box-musica {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.68);
+      background: rgba(7, 24, 46, 0.68);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -303,11 +633,11 @@
 
     .card-musica {
       width: min(430px, 100%);
-      background: #fffaf2;
+      background: #f8f5ee;
       border-radius: 26px;
       padding: 28px;
       text-align: center;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.38);
+      box-shadow: 0 24px 80px rgba(11,31,58,0.28);
       border: 1px solid rgba(255,255,255,0.55);
       animation: subir 700ms ease both;
     }
@@ -319,7 +649,7 @@
     }
 
     .card-musica p {
-      color: #6b5b4b;
+      color: #6f7782;
       line-height: 1.55;
       margin-bottom: 18px;
     }
@@ -346,9 +676,9 @@
       display: none;
       gap: 8px;
       align-items: center;
-      background: rgba(255,250,242,0.94);
+      background: rgba(248,245,238,0.94);
       border: 1px solid rgba(255,255,255,0.5);
-      box-shadow: 0 14px 36px rgba(0,0,0,0.25);
+      box-shadow: 0 14px 36px rgba(11,31,58,0.20);
       border-radius: 999px;
       padding: 8px;
       backdrop-filter: blur(8px);
@@ -396,6 +726,29 @@
       }
     }
 
+
+
+    .btn:disabled {
+      opacity: 0.82;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    @media (max-width: 520px) {
+      .brand-logo {
+        border-radius: 24px;
+        align-items: flex-start;
+      }
+
+      .brand-text strong {
+        font-size: 1rem;
+      }
+
+      .brand-text span {
+        font-size: 0.74rem;
+      }
+    }
+
     @media (max-width: 860px) {
       body {
         background-attachment: scroll;
@@ -418,6 +771,7 @@
       }
 
       .grid,
+      .grid-2,
       .gallery {
         grid-template-columns: 1fr;
       }
@@ -425,6 +779,20 @@
       .timeline-item {
         grid-template-columns: 1fr;
         gap: 6px;
+      }
+
+      .mensagem-card .topo {
+        display: grid;
+      }
+
+      .mensagem-card small {
+        white-space: normal;
+      }
+
+      .mural-mensagens {
+        max-height: none;
+        overflow: visible;
+        padding-right: 0;
       }
 
       .player-flutuante {
@@ -435,6 +803,21 @@
 
       .player-flutuante span {
         white-space: normal;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .btn {
+        width: 100%;
+      }
+
+      .hero-actions {
+        display: grid;
+      }
+
+      .vela-visual {
+        transform: scale(0.92);
+        margin-bottom: 10px;
       }
     }
   </style>
@@ -489,6 +872,20 @@
   <div class="page">
     <header>
       <div class="hero-card">
+        <div class="brand-logo" aria-label="Memoriam Online">
+          <div class="brand-symbol" aria-hidden="true">
+            <svg viewBox="0 0 96 96" role="img">
+              <ellipse cx="48" cy="13" rx="16" ry="6" fill="none" stroke="#d8b76a" stroke-width="5" />
+              <path d="M30 72c-10-8-14-18-10-28 5-13 20-12 28-2 8-10 23-11 28 2 4 10 0 20-10 28L48 86 30 72Z" fill="none" stroke="#0b1f3a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M31 46c5-7 14-8 17 1 3-9 12-8 17-1" fill="none" stroke="#2e3440" stroke-width="5" stroke-linecap="round" />
+              <path d="M22 78c14 8 38 8 52 0" fill="none" stroke="#c9a24a" stroke-width="4" stroke-linecap="round" />
+            </svg>
+          </div>
+          <div class="brand-text">
+            <strong>Memoriam Online</strong>
+            <span>Conectando memórias, eternizando amores.</span>
+          </div>
+        </div>
         <div class="halo">
           <div class="avatar">PB</div>
         </div>
@@ -504,6 +901,8 @@
         <div class="hero-actions">
           <a href="#historia" class="btn btn-primary">Conhecer a história</a>
           <a href="#memorias" class="btn btn-secondary">Ver memórias</a>
+          <a href="#vela-online" class="btn btn-secondary">Acender vela</a>
+          <a href="#mensagens-familia" class="btn btn-secondary">Enviar mensagem</a>
         </div>
       </div>
     </header>
@@ -576,6 +975,73 @@
         </div>
       </section>
 
+      <section id="vela-online">
+        <h2>Vela online</h2>
+        <p class="section-subtitle">
+          Um gesto simples de carinho. Ao acender a vela, a página guarda essa homenagem neste navegador.
+        </p>
+
+        <div class="grid-2">
+          <div class="vela-card">
+            <div id="velaVisual" class="vela-visual">
+              <div class="chama"></div>
+              <div class="corpo-vela"></div>
+              <div class="base-vela"></div>
+            </div>
+
+            <div id="contadorVelas" class="contador-velas">0 velas acesas</div>
+            <p class="texto-vela">Que esta luz represente saudade, respeito e amor.</p>
+
+            <button id="btnAcenderVela" class="btn btn-primary" type="button">🕯️ Acender vela</button>
+            <div id="statusVela" class="vela-status"></div>
+          </div>
+
+          <div class="info-card">
+            <strong>O significado</strong>
+            <p>
+              A vela virtual simboliza presença. Não resolve a saudade, porque saudade não é bug para corrigir;
+              é amor que ficou rodando em segundo plano. Mas ela cria um momento de pausa, memória e respeito.
+            </p>
+            <p style="margin-top: 12px;">
+              Em uma versão com banco de dados, este contador pode registrar homenagens reais de todos os visitantes
+              que acessarem o memorial pelo QR Code.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="mensagens-familia">
+        <h2>Mensagens para a família</h2>
+        <p class="section-subtitle">
+          Visitantes podem deixar uma homenagem, uma lembrança ou uma palavra de conforto. Nesta versão de exemplo,
+          as mensagens ficam salvas no próprio navegador.
+        </p>
+
+        <div class="grid-2">
+          <form id="formMensagemFamilia" class="form-mensagem">
+            <div class="campo">
+              <label for="nomeVisitante">Seu nome</label>
+              <input id="nomeVisitante" name="nomeVisitante" type="text" placeholder="Ex.: Maria Pereira" maxlength="70" autocomplete="name" />
+            </div>
+
+            <div class="campo">
+              <label for="textoMensagem">Mensagem</label>
+              <textarea id="textoMensagem" name="textoMensagem" placeholder="Escreva uma mensagem de carinho para a família..." maxlength="350"></textarea>
+              <span id="contadorMensagem" class="contador-caracteres">0/350</span>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Enviar mensagem</button>
+            <button id="btnLimparMensagens" class="btn btn-secondary" type="button" style="margin-top: 10px;">Limpar mensagens deste navegador</button>
+
+            <div id="statusMensagem" class="status-form"></div>
+          </form>
+
+          <div>
+            <div id="muralMensagens" class="mural-mensagens" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+
       <section>
         <h2>Mensagem da família</h2>
 
@@ -589,7 +1055,7 @@
     </main>
 
     <footer>
-      Memorial Online — Uma lembrança eterna acessível pelo QR Code.
+      Memoriam Online — Uma lembrança eterna acessível pelo QR Code.
     </footer>
   </div>
 
@@ -667,6 +1133,174 @@
         "Arquivo de música não encontrado. Caminho esperado: musicas/musica-preferida.mp3";
       console.error("Arquivo de música não encontrado:", CAMINHO_MUSICA);
     });
+
+    // Vela online com armazenamento local.
+    const CHAVE_VELA = "memorialPedroVelasOnline";
+    const CHAVE_VELA_ACESA = "memorialPedroMinhaVelaAcesa";
+    const velaVisual = document.getElementById("velaVisual");
+    const contadorVelas = document.getElementById("contadorVelas");
+    const btnAcenderVela = document.getElementById("btnAcenderVela");
+    const statusVela = document.getElementById("statusVela");
+
+    function getVelas() {
+      return Number(localStorage.getItem(CHAVE_VELA) || "0");
+    }
+
+    function formatarVelas(total) {
+      return total === 1 ? "1 vela acesa" : `${total} velas acesas`;
+    }
+
+    function atualizarVela() {
+      const total = getVelas();
+      const minhaVelaAcesa = localStorage.getItem(CHAVE_VELA_ACESA) === "sim";
+      contadorVelas.textContent = formatarVelas(total);
+
+      if (minhaVelaAcesa) {
+        velaVisual.classList.add("vela-acesa");
+        btnAcenderVela.textContent = "🕯️ Vela acesa";
+        btnAcenderVela.disabled = true;
+        statusVela.textContent = "Sua homenagem está acesa neste memorial.";
+      }
+    }
+
+    btnAcenderVela.addEventListener("click", function () {
+      const minhaVelaAcesa = localStorage.getItem(CHAVE_VELA_ACESA) === "sim";
+
+      if (minhaVelaAcesa) {
+        statusVela.textContent = "Você já acendeu uma vela neste navegador.";
+        return;
+      }
+
+      const novoTotal = getVelas() + 1;
+      localStorage.setItem(CHAVE_VELA, String(novoTotal));
+      localStorage.setItem(CHAVE_VELA_ACESA, "sim");
+      atualizarVela();
+    });
+
+    atualizarVela();
+
+    // Mensagens para a família com armazenamento local.
+    const CHAVE_MENSAGENS = "memorialPedroMensagensFamilia";
+    const formMensagemFamilia = document.getElementById("formMensagemFamilia");
+    const nomeVisitante = document.getElementById("nomeVisitante");
+    const textoMensagem = document.getElementById("textoMensagem");
+    const contadorMensagem = document.getElementById("contadorMensagem");
+    const muralMensagens = document.getElementById("muralMensagens");
+    const statusMensagem = document.getElementById("statusMensagem");
+    const btnLimparMensagens = document.getElementById("btnLimparMensagens");
+
+    const mensagensExemplo = [
+      {
+        nome: "Família Pereira",
+        texto: "Pedro deixou lembranças que seguem presentes nas conversas, nos costumes e no carinho de todos nós.",
+        data: "Mensagem fixa"
+      },
+      {
+        nome: "Um amigo da família",
+        texto: "Que este espaço mantenha viva a memória de uma pessoa querida e respeitada por todos.",
+        data: "Mensagem fixa"
+      }
+    ];
+
+    function escaparHtml(texto) {
+      return String(texto)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function getMensagens() {
+      try {
+        return JSON.parse(localStorage.getItem(CHAVE_MENSAGENS)) || [];
+      } catch (erro) {
+        return [];
+      }
+    }
+
+    function salvarMensagens(mensagens) {
+      localStorage.setItem(CHAVE_MENSAGENS, JSON.stringify(mensagens));
+    }
+
+    function renderizarMensagens() {
+      const mensagens = [...getMensagens(), ...mensagensExemplo];
+
+      if (!mensagens.length) {
+        muralMensagens.innerHTML = '<div class="sem-mensagens">Ainda não há mensagens neste memorial.</div>';
+        return;
+      }
+
+      muralMensagens.innerHTML = mensagens.map(function (mensagem) {
+        return `
+          <article class="mensagem-card">
+            <div class="topo">
+              <strong>${escaparHtml(mensagem.nome)}</strong>
+              <small>${escaparHtml(mensagem.data)}</small>
+            </div>
+            <p>${escaparHtml(mensagem.texto)}</p>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function atualizarContadorMensagem() {
+      contadorMensagem.textContent = `${textoMensagem.value.length}/350`;
+    }
+
+    textoMensagem.addEventListener("input", atualizarContadorMensagem);
+
+    formMensagemFamilia.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const nome = nomeVisitante.value.trim();
+      const texto = textoMensagem.value.trim();
+      statusMensagem.classList.remove("erro");
+
+      if (nome.length < 2) {
+        statusMensagem.textContent = "Informe seu nome para enviar a mensagem.";
+        statusMensagem.classList.add("erro");
+        nomeVisitante.focus();
+        return;
+      }
+
+      if (texto.length < 10) {
+        statusMensagem.textContent = "Escreva uma mensagem um pouco maior.";
+        statusMensagem.classList.add("erro");
+        textoMensagem.focus();
+        return;
+      }
+
+      const mensagens = getMensagens();
+      mensagens.unshift({
+        nome,
+        texto,
+        data: new Date().toLocaleDateString("pt-BR", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit"
+        })
+      });
+
+      salvarMensagens(mensagens.slice(0, 30));
+      formMensagemFamilia.reset();
+      atualizarContadorMensagem();
+      renderizarMensagens();
+      statusMensagem.textContent = "Mensagem enviada e salva neste navegador.";
+    });
+
+    btnLimparMensagens.addEventListener("click", function () {
+      if (!confirm("Deseja apagar as mensagens salvas neste navegador?")) return;
+      localStorage.removeItem(CHAVE_MENSAGENS);
+      renderizarMensagens();
+      statusMensagem.classList.remove("erro");
+      statusMensagem.textContent = "Mensagens locais apagadas.";
+    });
+
+    atualizarContadorMensagem();
+    renderizarMensagens();
 
     (function chuvaDeCuias() {
       const quantidade = window.innerWidth <= 600 ? 10 : 18;
