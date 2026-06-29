@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#062452" />
+  <meta name="description" content="Memorial de Pedro Baptista Pereira Neto" />
+  <title>In Memorian | Pedro Baptista Pereira Neto</title>
+  <link rel="preload" href="assets/logo-memorial-online.png" as="image" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="memorial-page">
+  <header class="memorial-topbar">
+    <a class="mini-brand" href="inmemorian_Pedro_Baptista_Pereira_neto.html" aria-label="Memorial Online">
+      <img src="assets/logo-memorial-online.png" alt="Memorial Online" />
+    </a>
+    <button class="logout-button" id="logoutButton" type="button">Sair</button>
+  </header>
+
+  <main class="memorial-shell">
+    <section class="memorial-hero" aria-labelledby="personName">
+      <div class="hero-photo" aria-hidden="true">
+        <span>PB</span>
+      </div>
+      <p class="eyebrow">In Memorian</p>
+      <h1 id="personName">Pedro Baptista Pereira Neto</h1>
+      <p class="life-dates">08/02/1948 <span>—</span> 13/01/2020</p>
+      <p class="hero-text">
+        Uma homenagem criada para preservar lembranças, histórias, fotos e mensagens de carinho.
+        Este memorial é um exemplo de como a memória de alguém pode continuar acessível, viva e respeitada.
+      </p>
+      <div class="hero-actions">
+        <a class="primary-button hero-button" href="#mensagens">Deixar mensagem</a>
+        <a class="secondary-link" href="#historia">Ver história</a>
+      </div>
+
+      <div class="memory-audio" aria-label="Música preferida">
+        <audio id="favoriteMusic" preload="metadata" loop src="assets/musica-preferida.mp3"></audio>
+        <div>
+          <strong>Música preferida</strong>
+          <span id="musicStatus">Toque para iniciar a trilha deste memorial.</span>
+        </div>
+        <div class="audio-actions">
+          <button class="audio-button" id="playMusicButton" type="button">▶ Tocar</button>
+          <button class="audio-button ghost" id="pauseMusicButton" type="button" disabled>Pausar</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick-info" aria-label="Informações principais">
+      <article>
+        <strong>Nome completo</strong>
+        <span>Pedro Baptista Pereira Neto</span>
+      </article>
+      <article>
+        <strong>Nascimento</strong>
+        <span>08 de fevereiro de 1948</span>
+      </article>
+      <article>
+        <strong>Falecimento</strong>
+        <span>13 de janeiro de 2020</span>
+      </article>
+      <article>
+        <strong>Idade</strong>
+        <span>71 anos</span>
+      </article>
+      <article>
+        <strong>Código do memorial</strong>
+        <span>memorial2026</span>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <article class="memorial-card wide" id="historia">
+        <div class="section-title">
+          <p class="eyebrow">História</p>
+          <h2>Uma vida guardada com respeito</h2>
+        </div>
+        <p>
+          Pedro Baptista Pereira Neto nasceu em 08 de fevereiro de 1948 e partiu em 13 de janeiro de 2020.
+          Esta página demonstra como um memorial digital pode reunir dados essenciais, lembranças afetivas,
+          fotos, mensagens da família e registros importantes da trajetória de uma pessoa.
+        </p>
+        <p>
+          Aqui, a família poderia contar sua infância, sua caminhada profissional, seus valores, suas alegrias,
+          suas conquistas e os momentos que marcaram quem ele foi. A ideia é simples: transformar datas frias
+          em presença, história e memória.
+        </p>
+      </article>
+
+      <article class="memorial-card quote-card">
+        <span class="quote-mark">“</span>
+        <p>
+          Quem é amado nunca desaparece por inteiro. Permanece nas histórias, nos gestos e no silêncio bonito da saudade.
+        </p>
+      </article>
+    </section>
+
+    <section class="memorial-card" aria-labelledby="timelineTitle">
+      <div class="section-title">
+        <p class="eyebrow">Linha do tempo</p>
+        <h2 id="timelineTitle">Marcos da memória</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <time datetime="1948-02-08">1948</time>
+          <div>
+            <strong>Nascimento</strong>
+            <p>Pedro Baptista Pereira Neto nasceu em 08 de fevereiro de 1948.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <time>Família</time>
+          <div>
+            <strong>Laços e convivência</strong>
+            <p>Espaço para registrar familiares, amizades, histórias de casa e momentos importantes.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <time>Legado</time>
+          <div>
+            <strong>Valores deixados</strong>
+            <p>Espaço para destacar ensinamentos, frases, hábitos e valores que continuam inspirando.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <time datetime="2020-01-13">2020</time>
+          <div>
+            <strong>Despedida</strong>
+            <p>Pedro faleceu em 13 de janeiro de 2020, deixando lembranças que podem ser preservadas aqui.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="memorial-card" aria-labelledby="galleryTitle">
+      <div class="section-title row-title">
+        <div>
+          <p class="eyebrow">Galeria</p>
+          <h2 id="galleryTitle">Memórias em imagens</h2>
+        </div>
+        <span class="soft-badge">Exemplo</span>
+      </div>
+      <div class="gallery-grid">
+        <figure>
+          <div class="gallery-placeholder">Foto</div>
+          <figcaption>Retrato de família</figcaption>
+        </figure>
+        <figure>
+          <div class="gallery-placeholder">Foto</div>
+          <figcaption>Momentos especiais</figcaption>
+        </figure>
+        <figure>
+          <div class="gallery-placeholder">Foto</div>
+          <figcaption>Recordações antigas</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <article class="memorial-card">
+        <div class="section-title">
+          <p class="eyebrow">Vela virtual</p>
+          <h2>Acenda uma lembrança</h2>
+        </div>
+        <div class="candle-area">
+          <div class="candle" aria-hidden="true"><span></span></div>
+          <p><strong id="candleCount">0</strong> velas acesas neste dispositivo.</p>
+          <button class="secondary-button full" id="lightCandleButton" type="button">Acender vela</button>
+        </div>
+      </article>
+
+      <article class="memorial-card">
+        <div class="section-title">
+          <p class="eyebrow">Dados públicos</p>
+          <h2>Identificação do memorial</h2>
+        </div>
+        <ul class="info-list">
+          <li><span>URL sugerida</span><strong>/inmemorian/Pedro-Baptista-Pereira-Neto</strong></li>
+          <li><span>QR Code</span><strong>Vinculado ao código memorial2026</strong></li>
+          <li><span>Privacidade</span><strong>Público por QR Code ou acesso autorizado</strong></li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="memorial-card" id="mensagens" aria-labelledby="messagesTitle">
+      <div class="section-title">
+        <p class="eyebrow">Livro de visitas</p>
+        <h2 id="messagesTitle">Mensagens de carinho</h2>
+      </div>
+
+      <form class="message-form" id="messageForm">
+        <label for="visitorName">Seu nome</label>
+        <input id="visitorName" type="text" maxlength="60" placeholder="Ex.: Maria" />
+        <label for="visitorMessage">Mensagem</label>
+        <textarea id="visitorMessage" maxlength="280" placeholder="Escreva uma lembrança, oração ou palavra de carinho..."></textarea>
+        <button class="primary-button" type="submit">Publicar mensagem</button>
+      </form>
+
+      <div class="messages-list" id="messagesList" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <script src="memorial.js"></script>
+</body>
+</html>

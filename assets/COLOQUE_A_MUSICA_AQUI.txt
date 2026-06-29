@@ -1,0 +1,6 @@
+Coloque aqui a música preferida no formato MP3 com o nome exato: musica-preferida.mp3
+
+Exemplo de caminho usado pela página:
+assets/musica-preferida.mp3
+
+Atenção: use somente músicas com permissão/licença para publicação.
