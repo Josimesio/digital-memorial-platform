@@ -6,6 +6,16 @@
 
   <title>Memoriam Online | Pedro Baptista Pereira Neto</title>
 
+  <script>
+    (function protegerMemorial() {
+      const autenticado = sessionStorage.getItem("memoriamOnlineAutenticado") === "sim";
+
+      if (!autenticado) {
+        window.location.replace("index.html?acesso=negado");
+      }
+    })();
+  </script>
+
   <style>
      :root {
       /* Paleta Memoriam Online */
@@ -613,6 +623,46 @@
       text-align: center;
     }
 
+    .barra-acesso {
+      position: fixed;
+      top: 14px;
+      right: 14px;
+      z-index: 9998;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px 8px 14px;
+      border-radius: 999px;
+      background: rgba(248,245,238,0.92);
+      border: 1px solid rgba(201,162,74,0.34);
+      box-shadow: 0 12px 34px rgba(11,31,58,0.16);
+      backdrop-filter: blur(10px);
+    }
+
+    .barra-acesso span {
+      color: var(--azul-profundo);
+      font-size: 0.85rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .btn-sair {
+      border: none;
+      min-height: 38px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      background: var(--azul-profundo);
+      color: white;
+      font-weight: 800;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .btn-sair:hover {
+      transform: translateY(-1px);
+      background: var(--azul-noite);
+    }
+
     footer {
       text-align: center;
       color: var(--cinza-suave);
@@ -795,6 +845,17 @@
         padding-right: 0;
       }
 
+      .barra-acesso {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        justify-content: space-between;
+      }
+
+      .barra-acesso span {
+        font-size: 0.78rem;
+      }
+
       .player-flutuante {
         left: 12px;
         right: 12px;
@@ -824,6 +885,10 @@
 </head>
 
 <body>
+  <div class="barra-acesso" aria-label="Área autenticada">
+    <span>Memorial protegido</span>
+    <button id="btnSairMemorial" class="btn-sair" type="button">Sair</button>
+  </div>
   <!--
     Estrutura correta para a música:
 
@@ -1061,6 +1126,16 @@
 
   <script>
     const CAMINHO_MUSICA = "musicas/musica-preferida.mp3";
+    const btnSairMemorial = document.getElementById("btnSairMemorial");
+
+    if (btnSairMemorial) {
+      btnSairMemorial.addEventListener("click", function () {
+        sessionStorage.removeItem("memoriamOnlineAutenticado");
+        sessionStorage.removeItem("memoriamOnlineMetodoLogin");
+        sessionStorage.removeItem("memoriamOnlineLoginEm");
+        window.location.href = "index.html?saiu=1";
+      });
+    }
 
     const musica = document.getElementById("musicaMemorial");
     const boxMusica = document.getElementById("boxMusica");

@@ -1,106 +1,569 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#062452" />
-  <meta name="description" content="Acesso ao Memorial Online" />
-  <title>Memorial Online | Login</title>
-  <link rel="preload" href="assets/logo-memorial-online.png" as="image" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Memoriam Online | Login</title>
+
+  <style>
+    :root {
+      --azul-profundo: #0b1f3a;
+      --azul-noite: #07182e;
+      --grafite: #2e3440;
+      --dourado: #c9a24a;
+      --dourado-suave: #d8b76a;
+      --off-white: #f8f5ee;
+      --branco-card: rgba(255, 255, 250, 0.94);
+      --cinza-suave: #6f7782;
+      --texto: #2e3440;
+      --erro: #9b2f2f;
+      --sucesso: #2f6b58;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--texto);
+      background:
+        radial-gradient(circle at 16% 10%, rgba(201,162,74,0.22), transparent 28%),
+        radial-gradient(circle at 86% 6%, rgba(11,31,58,0.11), transparent 26%),
+        radial-gradient(circle at 50% 100%, rgba(201,162,74,0.12), transparent 34%),
+        linear-gradient(180deg, var(--off-white), #fffdf8 46%, #eef2f6 100%);
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(120deg, transparent 0 20%, rgba(201,162,74,0.08) 20% 21%, transparent 21% 100%),
+        radial-gradient(circle at 22% 24%, rgba(255,255,255,0.55), transparent 28%),
+        radial-gradient(circle at 82% 16%, rgba(11,31,58,0.08), transparent 26%);
+    }
+
+    .login-page {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 455px);
+      padding: 10px 0;
+    }
+
+    .brand {
+      text-align: center;
+      margin-bottom: 18px;
+      animation: subir 650ms ease both;
+    }
+
+    .brand-symbol {
+      width: 86px;
+      height: 86px;
+      margin: 0 auto 12px;
+      display: grid;
+      place-items: center;
+      border-radius: 28px;
+      background: rgba(255,255,250,0.74);
+      border: 1px solid rgba(201,162,74,0.28);
+      box-shadow: 0 16px 44px rgba(11,31,58,0.12);
+    }
+
+    .brand-symbol svg {
+      width: 68px;
+      height: 68px;
+      display: block;
+    }
+
+    .brand h1 {
+      color: var(--azul-profundo);
+      font-size: clamp(1.65rem, 7vw, 2.35rem);
+      letter-spacing: 0.2px;
+      line-height: 1.05;
+    }
+
+    .brand p {
+      color: var(--cinza-suave);
+      margin-top: 8px;
+      font-size: 0.96rem;
+      line-height: 1.5;
+    }
+
+    .login-card {
+      width: 100%;
+      padding: 24px;
+      border-radius: 30px;
+      background: linear-gradient(180deg, rgba(255,255,250,0.97), rgba(248,245,238,0.94));
+      border: 1px solid rgba(201,162,74,0.24);
+      box-shadow: 0 24px 80px rgba(11,31,58,0.16);
+      animation: subir 780ms ease both;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .login-card::after {
+      content: "";
+      position: absolute;
+      right: -76px;
+      top: -80px;
+      width: 190px;
+      height: 190px;
+      background: radial-gradient(circle, rgba(201,162,74,0.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    .login-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes subir {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .login-title {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .login-title h2 {
+      color: var(--azul-noite);
+      font-size: 1.65rem;
+      margin-bottom: 6px;
+    }
+
+    .login-title span {
+      color: var(--cinza-suave);
+      font-size: 0.92rem;
+      line-height: 1.4;
+    }
+
+    .alerta {
+      display: none;
+      margin-bottom: 16px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(155,47,47,0.08);
+      color: var(--erro);
+      border: 1px solid rgba(155,47,47,0.16);
+      line-height: 1.45;
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .alerta.sucesso {
+      background: rgba(47,107,88,0.08);
+      border-color: rgba(47,107,88,0.16);
+      color: var(--sucesso);
+    }
+
+    .tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      padding: 6px;
+      border-radius: 999px;
+      background: rgba(11,31,58,0.07);
+      margin-bottom: 18px;
+    }
+
+    .tab-btn {
+      min-height: 42px;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      background: transparent;
+      color: var(--azul-profundo);
+      font-weight: 800;
+      transition: background 180ms ease, color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .tab-btn.active {
+      background: var(--azul-profundo);
+      color: white;
+      box-shadow: 0 10px 22px rgba(11,31,58,0.16);
+    }
+
+    .painel-login {
+      display: none;
+    }
+
+    .painel-login.active {
+      display: block;
+    }
+
+    .campo {
+      margin-bottom: 14px;
+    }
+
+    .campo label {
+      display: block;
+      color: var(--azul-noite);
+      font-weight: 800;
+      margin-bottom: 8px;
+      font-size: 0.93rem;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-wrap input {
+      width: 100%;
+      min-height: 52px;
+      border: 1px solid rgba(11,31,58,0.20);
+      background: #f8f5ee;
+      border-radius: 17px;
+      padding: 14px 48px 14px 15px;
+      color: var(--texto);
+      font-size: 1rem;
+      outline: none;
+      transition: box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .input-wrap input:focus {
+      border-color: var(--dourado);
+      box-shadow: 0 0 0 4px rgba(201,162,74,0.16);
+    }
+
+    .input-icon {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--dourado);
+      font-size: 1.1rem;
+    }
+
+    .toggle-senha {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(201,162,74,0.14);
+      cursor: pointer;
+      color: var(--azul-profundo);
+      font-size: 1rem;
+    }
+
+    .btn {
+      width: 100%;
+      border: none;
+      min-height: 52px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 900;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(11,31,58,0.15);
+    }
+
+    .btn-primary {
+      background: var(--azul-profundo);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--azul-noite);
+    }
+
+    .btn-secondary {
+      margin-top: 10px;
+      background: rgba(11,31,58,0.10);
+      color: var(--azul-profundo);
+      border: 1px solid rgba(11,31,58,0.10);
+    }
+
+    .credenciais {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.66);
+      border: 1px dashed rgba(201,162,74,0.45);
+      color: var(--cinza-suave);
+      font-size: 0.86rem;
+      line-height: 1.55;
+    }
+
+    .credenciais strong {
+      color: var(--azul-profundo);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 18px;
+      color: var(--cinza-suave);
+      font-size: 0.84rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 430px) {
+      body {
+        padding: 12px;
+        place-items: start center;
+      }
+
+      .login-page {
+        padding-top: 12px;
+      }
+
+      .brand-symbol {
+        width: 76px;
+        height: 76px;
+        border-radius: 24px;
+      }
+
+      .brand-symbol svg {
+        width: 60px;
+        height: 60px;
+      }
+
+      .login-card {
+        padding: 20px 16px;
+        border-radius: 26px;
+      }
+
+      .tabs {
+        border-radius: 20px;
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
-<body class="login-page">
-  <main class="page-shell" aria-labelledby="loginTitle">
-    <section class="login-wrap">
-      <header class="brand" aria-label="Memorial Online">
-        <img src="assets/logo-memorial-online.png" alt="Memorial Online - Conectando memórias, eternizando amores" class="brand-logo" />
-      </header>
 
-      <section class="login-card" aria-label="Área de acesso">
-        <div class="card-ornament" aria-hidden="true">♥</div>
+<body>
+  <main class="login-page">
+    <section class="brand" aria-label="Memoriam Online">
+      <div class="brand-symbol" aria-hidden="true">
+        <svg viewBox="0 0 96 96" role="img">
+          <ellipse cx="48" cy="13" rx="16" ry="6" fill="none" stroke="#d8b76a" stroke-width="5" />
+          <path d="M30 72c-10-8-14-18-10-28 5-13 20-12 28-2 8-10 23-11 28 2 4 10 0 20-10 28L48 86 30 72Z" fill="none" stroke="#0b1f3a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M31 46c5-7 14-8 17 1 3-9 12-8 17-1" fill="none" stroke="#2e3440" stroke-width="5" stroke-linecap="round" />
+          <path d="M22 78c14 8 38 8 52 0" fill="none" stroke="#c9a24a" stroke-width="4" stroke-linecap="round" />
+        </svg>
+      </div>
 
-        <div class="form-header">
-          <p class="eyebrow">Acesso ao memorial</p>
-          <h1 id="loginTitle">Entrar</h1>
-          <p class="subtitle" id="modeDescription">Use o e-mail cadastrado para acessar o memorial.</p>
-        </div>
-
-        <form id="loginForm" novalidate>
-          <div class="field-group account-field">
-            <label for="email">E-mail</label>
-            <div class="input-shell">
-              <span class="input-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false"><path d="M4.5 6.75h15a1.5 1.5 0 0 1 1.5 1.5v7.5a1.5 1.5 0 0 1-1.5 1.5h-15a1.5 1.5 0 0 1-1.5-1.5v-7.5a1.5 1.5 0 0 1 1.5-1.5Zm.9 1.5 6.6 4.62 6.6-4.62M4.5 9.15l6.75 4.72a1.3 1.3 0 0 0 1.5 0l6.75-4.72"/></svg>
-              </span>
-              <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="Digite seu e-mail" />
-            </div>
-            <small class="error-message" id="emailError"></small>
-          </div>
-
-          <div class="field-group account-field">
-            <label for="password">Senha</label>
-            <div class="input-shell">
-              <span class="input-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false"><path d="M7 10V8a5 5 0 0 1 10 0v2m-11.5 0h13a1.5 1.5 0 0 1 1.5 1.5v7A1.5 1.5 0 0 1 18.5 20h-13A1.5 1.5 0 0 1 4 18.5v-7A1.5 1.5 0 0 1 5.5 10Zm6.5 3.6v2.1"/></svg>
-              </span>
-              <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Digite sua senha" />
-              <button class="icon-button" id="togglePassword" type="button" aria-label="Mostrar senha" aria-pressed="false">
-                <svg viewBox="0 0 24 24" focusable="false"><path d="M2.8 12s3.35-5.5 9.2-5.5 9.2 5.5 9.2 5.5-3.35 5.5-9.2 5.5S2.8 12 2.8 12Zm9.2 2.25A2.25 2.25 0 1 0 12 9.75a2.25 2.25 0 0 0 0 4.5Z"/></svg>
-              </button>
-            </div>
-            <small class="error-message" id="passwordError"></small>
-          </div>
-
-          <div class="field-group code-field is-hidden">
-            <label for="memorialCode">Código do memorial</label>
-            <div class="input-shell">
-              <span class="input-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h3v4h-4v-2.5Zm11.5-1.5h3A1.5 1.5 0 0 1 20 5.5v3h-4v-4.5Zm-11 11.5h4v4h-3A1.5 1.5 0 0 1 4 18v-2.5Zm11.5.5h4v2A1.5 1.5 0 0 1 18.5 19.5h-3V16ZM11 4h2v4h-2V4Zm-7 7h4v2H4v-2Zm7 0h2v2h-2v-2Zm5 0h4v2h-4v-2Zm-5 5h2v4h-2v-4Z"/></svg>
-              </span>
-              <input id="memorialCode" name="memorialCode" type="text" inputmode="text" autocomplete="one-time-code" placeholder="Ex.: memorial2026" autocapitalize="none" />
-            </div>
-            <small class="error-message" id="codeError"></small>
-          </div>
-
-          <button class="primary-button" id="submitButton" type="submit">
-            <span class="button-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false"><path d="M7 10V8a5 5 0 0 1 10 0v2m-11.5 0h13a1.5 1.5 0 0 1 1.5 1.5v7A1.5 1.5 0 0 1 18.5 20h-13A1.5 1.5 0 0 1 4 18.5v-7A1.5 1.5 0 0 1 5.5 10Z"/></svg>
-            </span>
-            <span id="submitText">Acessar memorial</span>
-          </button>
-
-          <div class="form-actions account-actions">
-            <button class="link-button" id="forgotPassword" type="button">Esqueci minha senha</button>
-          </div>
-
-          <div class="divider" aria-hidden="true"><span></span></div>
-
-          <button class="secondary-button" id="switchMode" type="button">
-            Entrar com código do memorial
-          </button>
-        </form>
-
-        <div class="demo-access" aria-label="Dados de teste">
-          <strong>Teste:</strong> memorial@gmail.com / 1234<br />
-          <strong>Código:</strong> memorial2026
-        </div>
-
-        <div class="status-message" id="statusMessage" role="status" aria-live="polite"></div>
-      </section>
+      <h1>Memoriam Online</h1>
+      <p>Conectando memórias, eternizando amores.</p>
     </section>
+
+    <section class="login-card">
+      <div class="login-title">
+        <h2>Entrar no memorial</h2>
+        <span>Acesso protegido para preservar as memórias com respeito.</span>
+      </div>
+
+      <div id="alertaLogin" class="alerta" role="alert"></div>
+
+      <div class="tabs" role="tablist" aria-label="Método de acesso">
+        <button id="tabConta" class="tab-btn active" type="button" role="tab" aria-selected="true">Conta</button>
+        <button id="tabCodigo" class="tab-btn" type="button" role="tab" aria-selected="false">Código</button>
+      </div>
+
+      <form id="formConta" class="painel-login active" autocomplete="on">
+        <div class="campo">
+          <label for="email">E-mail</label>
+          <div class="input-wrap">
+            <input id="email" type="email" placeholder="Digite seu e-mail" inputmode="email" autocomplete="email" />
+            <span class="input-icon">✉</span>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="senha">Senha</label>
+          <div class="input-wrap">
+            <input id="senha" type="password" placeholder="Digite sua senha" autocomplete="current-password" />
+            <button id="btnMostrarSenha" class="toggle-senha" type="button" aria-label="Mostrar senha">👁</button>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Acessar memorial</button>
+      </form>
+
+      <form id="formCodigo" class="painel-login" autocomplete="off">
+        <div class="campo">
+          <label for="codigoMemorial">Código do memorial</label>
+          <div class="input-wrap">
+            <input id="codigoMemorial" type="text" placeholder="Digite o código do memorial" autocomplete="off" autocapitalize="none" />
+            <span class="input-icon">⌁</span>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Entrar com código</button>
+      </form>
+
+      <a class="btn btn-secondary" href="inmemorian_Pedro_Baptista_Pereira_neto.html">Testar acesso direto bloqueado</a>
+
+      <div class="credenciais">
+        <strong>Dados de teste:</strong><br />
+        E-mail: memorial@gmail.com<br />
+        Senha: 1234<br />
+        Código: memorial2026
+      </div>
+    </section>
+
+    <footer>
+      Memoriam Online — Memorial protegido por autenticação no navegador.
+    </footer>
   </main>
 
-  <dialog class="recovery-modal" id="recoveryModal" aria-labelledby="recoveryTitle">
-    <form method="dialog" class="modal-content">
-      <button class="modal-close" value="cancel" aria-label="Fechar">×</button>
-      <h2 id="recoveryTitle">Recuperar senha</h2>
-      <p>Este é um protótipo. Em produção, o sistema enviaria um link seguro para redefinição.</p>
-      <label for="recoveryEmail">E-mail</label>
-      <input id="recoveryEmail" type="email" inputmode="email" autocomplete="email" placeholder="seuemail@dominio.com" />
-      <button class="primary-button modal-button" value="default">Enviar instruções</button>
-    </form>
-  </dialog>
+  <script>
+    const EMAIL_VALIDO = "memorial@gmail.com";
+    const SENHA_VALIDA = "1234";
+    const CODIGO_VALIDO = "memorial2026";
+    const PAGINA_MEMORIAL = "inmemorian_Pedro_Baptista_Pereira_neto.html";
 
-  <script src="app.js"></script>
+    const tabConta = document.getElementById("tabConta");
+    const tabCodigo = document.getElementById("tabCodigo");
+    const formConta = document.getElementById("formConta");
+    const formCodigo = document.getElementById("formCodigo");
+    const alertaLogin = document.getElementById("alertaLogin");
+    const email = document.getElementById("email");
+    const senha = document.getElementById("senha");
+    const codigoMemorial = document.getElementById("codigoMemorial");
+    const btnMostrarSenha = document.getElementById("btnMostrarSenha");
+
+    function mostrarAlerta(mensagem, tipo = "erro") {
+      alertaLogin.textContent = mensagem;
+      alertaLogin.className = tipo === "sucesso" ? "alerta sucesso" : "alerta";
+      alertaLogin.style.display = "block";
+    }
+
+    function limparAlerta() {
+      alertaLogin.textContent = "";
+      alertaLogin.style.display = "none";
+      alertaLogin.className = "alerta";
+    }
+
+    function trocarPainel(tipo) {
+      limparAlerta();
+      const contaAtiva = tipo === "conta";
+
+      tabConta.classList.toggle("active", contaAtiva);
+      tabCodigo.classList.toggle("active", !contaAtiva);
+      tabConta.setAttribute("aria-selected", String(contaAtiva));
+      tabCodigo.setAttribute("aria-selected", String(!contaAtiva));
+
+      formConta.classList.toggle("active", contaAtiva);
+      formCodigo.classList.toggle("active", !contaAtiva);
+
+      setTimeout(function () {
+        if (contaAtiva) email.focus();
+        else codigoMemorial.focus();
+      }, 80);
+    }
+
+    function liberarAcesso(metodo) {
+      sessionStorage.setItem("memoriamOnlineAutenticado", "sim");
+      sessionStorage.setItem("memoriamOnlineMetodoLogin", metodo);
+      sessionStorage.setItem("memoriamOnlineLoginEm", new Date().toISOString());
+
+      mostrarAlerta("Acesso liberado. Abrindo memorial...", "sucesso");
+      setTimeout(function () {
+        window.location.href = PAGINA_MEMORIAL;
+      }, 450);
+    }
+
+    tabConta.addEventListener("click", function () {
+      trocarPainel("conta");
+    });
+
+    tabCodigo.addEventListener("click", function () {
+      trocarPainel("codigo");
+    });
+
+    btnMostrarSenha.addEventListener("click", function () {
+      const mostrando = senha.type === "text";
+      senha.type = mostrando ? "password" : "text";
+      btnMostrarSenha.textContent = mostrando ? "👁" : "🙈";
+      btnMostrarSenha.setAttribute("aria-label", mostrando ? "Mostrar senha" : "Ocultar senha");
+    });
+
+    formConta.addEventListener("submit", function (event) {
+      event.preventDefault();
+      limparAlerta();
+
+      const emailDigitado = email.value.trim().toLowerCase();
+      const senhaDigitada = senha.value.trim();
+
+      if (!emailDigitado || !senhaDigitada) {
+        mostrarAlerta("Informe e-mail e senha para continuar.");
+        return;
+      }
+
+      if (emailDigitado === EMAIL_VALIDO && senhaDigitada === SENHA_VALIDA) {
+        liberarAcesso("email");
+        return;
+      }
+
+      mostrarAlerta("E-mail ou senha inválidos. A página do memorial continua bloqueada.");
+      senha.value = "";
+      senha.focus();
+    });
+
+    formCodigo.addEventListener("submit", function (event) {
+      event.preventDefault();
+      limparAlerta();
+
+      const codigoDigitado = codigoMemorial.value.trim().toLowerCase();
+
+      if (!codigoDigitado) {
+        mostrarAlerta("Informe o código do memorial para continuar.");
+        return;
+      }
+
+      if (codigoDigitado === CODIGO_VALIDO.toLowerCase()) {
+        liberarAcesso("codigo");
+        return;
+      }
+
+      mostrarAlerta("Código do memorial inválido. Acesso negado.");
+      codigoMemorial.focus();
+    });
+
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get("acesso") === "negado") {
+      mostrarAlerta("Você tentou abrir o memorial sem login. Faça login para continuar.");
+    }
+
+    if (params.get("saiu") === "1") {
+      mostrarAlerta("Você saiu do memorial com segurança.", "sucesso");
+    }
+  </script>
 </body>
 </html>
